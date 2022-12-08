@@ -7,8 +7,8 @@ import listProductsController from "../controllers/listProducts.controller";
 
 const userRouter = Router()
 
-userRouter.get("/categories", listCategoriesController)
-userRouter.post("/categories", createCategoryController)
+userRouter.get("/", listCategoriesController)
+userRouter.post("/", createCategoryController)
 userRouter.get("/products", listProductsController)
 userRouter.post("/products", createProductController)
 
