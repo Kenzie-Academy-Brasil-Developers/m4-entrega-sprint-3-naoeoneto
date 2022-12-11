@@ -1,9 +1,9 @@
 import listProductsService from "../services/listProducts.service";
 
 const listProductsController = async (req, res) => {
-    const [status, data] = await listProductsService()
+    const data = await listProductsService()
     
-    return res.status(status).json(data);
+    return res.status(200).json(data);
 }
 
 export default listProductsController

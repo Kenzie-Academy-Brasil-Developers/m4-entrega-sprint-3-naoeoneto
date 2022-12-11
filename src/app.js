@@ -6,7 +6,7 @@ import { errorHandler } from './errors'
 const app = express()
 
 app.use(express.json())
-app.use('/categories', userRouter);
+app.use('', userRouter);
 app.use(errorHandler)
 
 export default app;

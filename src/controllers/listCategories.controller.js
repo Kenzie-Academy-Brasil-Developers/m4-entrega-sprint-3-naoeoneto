@@ -1,9 +1,9 @@
 import listCategoriesService from "../services/listCategories.service";
 
 const listCategoriesController = async (req, res) => {
-    const [status, data] = await listCategoriesService()
+    const data = await listCategoriesService()
     
-    return res.status(status).json(data);
+    return res.status(200).json(data);
 }
 
 export default listCategoriesController
