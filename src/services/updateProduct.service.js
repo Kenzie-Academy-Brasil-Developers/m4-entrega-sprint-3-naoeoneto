@@ -16,13 +16,32 @@ const updateProductService = async (data, id) => {
             id = \$${keys.length+=1} 
         RETURNING *;
         `
-    
-    const queryResponse = await database.query(
-        query,
-        [...values, id]
-    )
+    try {
+        const checkProduct = await database.query(
+            `
+            SELECT
+                *
+            FROM
+                products
+            WHERE
+                id = $1
+            `,
+            [id]
+        )
 
-    return queryResponse.rows[0]
+        if(checkProduct.rowCount = 0){
+            throw new AppError("Product doesn't exists", 409)
+        }
+
+        const queryResponse = await database.query(
+            query,
+            [...values, id]
+        )
+    
+        return queryResponse.rows[0]
+    } catch (error) {
+        console.error(error.message)
+    }
 }
 
 export default updateProductService

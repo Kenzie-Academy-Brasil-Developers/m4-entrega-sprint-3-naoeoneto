@@ -5,8 +5,8 @@ const createCategoryShape = yup.object().shape({
 })
 
 const categoryReturnedShape = yup.object().shape({
-    id: yup.number().required(),
-    name: yup.string().max(200).required()
+    id: yup.number(),
+    name: yup.string().max(200)
 })
 
 export { createCategoryShape, categoryReturnedShape }

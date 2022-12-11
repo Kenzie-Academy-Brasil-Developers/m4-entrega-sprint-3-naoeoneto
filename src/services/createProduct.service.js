@@ -11,7 +11,7 @@ const createProductService = async (payload) => {
         `,
         [payload.name, payload.price, payload.category_id]
     )
-        
+  
     return [201, queryResponse.rows[0]]
 }
 

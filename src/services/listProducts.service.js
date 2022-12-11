@@ -4,7 +4,7 @@ const listProductsService = async () => {
     const queryResponse = await database.query(
         'SELECT * FROM products;'
     )
-    // console.log(queryResponse.rows)
+    
     return queryResponse.rows
 }
 

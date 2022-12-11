@@ -1,6 +1,24 @@
 import { database } from "../database"
+import { AppError } from "../errors"
+import { categoryReturnedShape } from "../serializers/createCategory.schema"
 
 const createCategoryService = async (payload) => {
+    const category = await database.query(
+        `
+        SELECT
+            *
+        FROM
+            categories
+        WHERE
+            "name" = $1
+        `,
+        [payload.name]
+    )
+
+    if(category.rowCount > 0){
+        throw new AppError("Category Already Exists", 409)
+    }
+    
     const queryResponse = await database.query(
         `
         INSERT INTO categories
@@ -12,7 +30,11 @@ const createCategoryService = async (payload) => {
         [payload.name]
     )
 
-    return [201, queryResponse.rows[0]]
+    const returnedCategory = await categoryReturnedShape.validate(queryResponse.rows[0], {
+        stripUnknown: true
+    })
+
+    return returnedCategory
 }
 
 export default createCategoryService

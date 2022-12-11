@@ -1,23 +1,23 @@
 import { database } from "../database"
 
-const getProductAndCategoryService = async (prod, cat, id) => {
+const getProductAndCategoryService = async (id) => {
     const queryResponse = await database.query(
         `
         SELECT
-            $1."name",
-            $1.price,
-            $2."name" AS category
+            products."name",
+            products.price,
+            categories."name" AS category
         FROM
-            $1
+            products
         JOIN
-            $2
+            categories
         ON
-            $1.category_id = $2.$3;
+            products.category_id = $1;
         `,
-        [prod, cat, id]
+        [id]
     )
-
-    return queryResponse.rows
+    
+    return queryResponse.rows[0]
 }
 
 export default getProductAndCategoryService

@@ -10,20 +10,26 @@ import listCategoriesController from "../controllers/listCategories.controller";
 import listProductsController from "../controllers/listProducts.controller";
 import updateCategoryController from "../controllers/updateCategory.controller";
 import updateProductController from "../controllers/updateProduct.controller";
-
+import checkCategoryIdMiddleware from "../middlewares/checkCategoryId.middleware";
+import checkIfIdIsStringMiddleware from "../middlewares/checkIfIdIsString.middleware";
+import checkIfProductExistsMiddleware from "../middlewares/checkIfProductExists.middleware";
+import checkProductIdMiddleware from "../middlewares/checkProductId.middleware";
+import validateDataMiddleware from "../middlewares/validateData.middleware";
+import { createCategoryShape } from "../serializers/createCategory.schema";
+import { createProductShape } from "../serializers/createProduct.schema";
 
 const userRouter = Router()
 
 userRouter.get("/categories", listCategoriesController)
-userRouter.post("/categories", createCategoryController)
+userRouter.post("/categories", validateDataMiddleware(createCategoryShape), createCategoryController)
 userRouter.get("/products", listProductsController)
-userRouter.post("/products", createProductController)
-userRouter.get("/categories/:id", getInfoCategoryController)
-userRouter.get("/products/:id", getInfoProductController)
-userRouter.patch("/categories/:id", updateCategoryController)
-userRouter.patch("/products/:id", updateProductController)
-userRouter.delete("/categories/:id", deleteCategoryController)
-userRouter.delete("/products/:id", deleteProductController)
-userRouter.get("/products/category/:id", getProductAndCategoryController)
+userRouter.post("/products", validateDataMiddleware(createProductShape), createProductController)
+userRouter.get("/categories/:id", checkIfIdIsStringMiddleware, checkCategoryIdMiddleware, getInfoCategoryController)
+userRouter.get("/products/:id", checkIfProductExistsMiddleware, getInfoProductController)
+userRouter.patch("/categories/:id", checkIfIdIsStringMiddleware, checkCategoryIdMiddleware, updateCategoryController)
+userRouter.patch("/products/:id", checkIfProductExistsMiddleware, updateProductController)
+userRouter.delete("/categories/:id", checkIfIdIsStringMiddleware, checkCategoryIdMiddleware, deleteCategoryController)
+userRouter.delete("/products/:id", checkProductIdMiddleware, deleteProductController)
+userRouter.get("/products/category/:id", checkProductIdMiddleware, getProductAndCategoryController)
 
 export default userRouter
