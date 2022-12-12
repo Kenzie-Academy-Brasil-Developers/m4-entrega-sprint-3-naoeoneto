@@ -22,7 +22,7 @@ const checkCategoryIdMiddleware = async (req, res, next) => {
         return next()
 
     } catch (error) {
-        return console.error(error.message)
+        return res.status(400).json(error.message)
     }
 }
 

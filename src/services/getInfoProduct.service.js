@@ -11,8 +11,8 @@ const getInfoProductService = async (id) => {
             id = $1;
         `, [id]
         )
-        // console.log(queryResponse.rows)
-        return queryResponse.rows
+        
+        return queryResponse.rows[0]
     }
 
 export default getInfoProductService

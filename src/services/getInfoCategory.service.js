@@ -12,7 +12,7 @@ const getInfoCategoryService = async (id) => {
         `, [id]
         )
 
-        return queryResponse.rows
+        return queryResponse.rows[0]
     }
 
 export default getInfoCategoryService

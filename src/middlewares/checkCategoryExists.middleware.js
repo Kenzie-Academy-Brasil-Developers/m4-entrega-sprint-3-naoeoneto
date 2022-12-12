@@ -6,15 +6,15 @@ const checkCategoryExistsMiddleware = async (req, res, next) => {
         SELECT
             *
         FROM
-            categories
-        WHERE
-            name = $1
-        `,
-        [req.body]
+            categories;
+        `
     )
+    
+    const check = queryResponse.rows
+    const findCategory = check.find(elem => elem.name === req.body.name)
 
-    if(queryResponse.rowCount > 0) {
-        return res.status(404).json({ message: "category already exists"})
+    if(findCategory) {
+        return res.status(400).json({ message: "category already exists"})
     }
 
     return next()
