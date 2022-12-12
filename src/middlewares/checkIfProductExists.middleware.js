@@ -9,20 +9,20 @@ const checkIfProductExistsMiddleware = async (req, res, next) => {
                 *
             FROM 
                 products
-            WHERE
-                "name" = $1
-            `,
-            [req.body.name]
+            `
         )
-            
-        if (!queryResponse.rowCount > 0){
-            throw new AppError("Product doesn't exists", 404)
+
+        const check = queryResponse.rows
+        const findProduct = check.find(elem => elem.id === req.params.id)
+           
+        if (!findProduct){
+            throw new AppError("Product doesn't exists", 400)
         }
     
         return next()
         
     } catch (error) {
-        console.error(error.message)    
+        return res.status(404).json(error.message)    
     }
 }
 
