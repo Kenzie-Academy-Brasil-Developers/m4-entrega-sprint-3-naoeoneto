@@ -17,7 +17,7 @@ const getProductAndCategoryService = async (id) => {
         [id]
     )
     
-    return queryResponse.rows[0]
+    return queryResponse.rows
 }
 
 export default getProductAndCategoryService

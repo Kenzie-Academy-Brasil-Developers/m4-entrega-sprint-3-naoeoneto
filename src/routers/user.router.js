@@ -12,7 +12,6 @@ import updateCategoryController from "../controllers/updateCategory.controller";
 import updateProductController from "../controllers/updateProduct.controller";
 import checkCategoryDoesntExistsMiddleware from "../middlewares/checkCategoryDoesntExists.middleware";
 import checkCategoryExistsMiddleware from "../middlewares/checkCategoryExists.middleware";
-import checkCategoryIdMiddleware from "../middlewares/checkCategoryId.middleware";
 import checkIfIdIsStringMiddleware from "../middlewares/checkIfIdIsString.middleware";
 import checkIfProductExistsMiddleware from "../middlewares/checkIfProductExists.middleware";
 import checkProductIdMiddleware from "../middlewares/checkProductId.middleware";
@@ -32,6 +31,6 @@ userRouter.patch("/categories/:id", checkCategoryDoesntExistsMiddleware, checkIf
 userRouter.patch("/products/:id", checkIfProductExistsMiddleware, updateProductController)
 userRouter.delete("/categories/:id", checkCategoryDoesntExistsMiddleware, checkIfIdIsStringMiddleware, deleteCategoryController)
 userRouter.delete("/products/:id", checkIfProductExistsMiddleware, checkProductIdMiddleware, deleteProductController)
-userRouter.get("/products/category/:id", checkProductIdMiddleware, getProductAndCategoryController)
+userRouter.get("/products/category/:id", checkCategoryDoesntExistsMiddleware, getProductAndCategoryController)
 
 export default userRouter

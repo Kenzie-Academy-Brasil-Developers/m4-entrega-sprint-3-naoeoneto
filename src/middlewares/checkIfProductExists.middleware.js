@@ -16,7 +16,7 @@ const checkIfProductExistsMiddleware = async (req, res, next) => {
         const findProduct = check.find(elem => elem.id === req.params.id)
            
         if (!findProduct){
-            throw new AppError("Product doesn't exists", 400)
+            throw new AppError("Product doesn't exists", 404)
         }
     
         return next()
