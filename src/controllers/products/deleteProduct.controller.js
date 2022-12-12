@@ -1,4 +1,4 @@
-import deleteProductService from "../services/deleteProduct.service"
+import deleteProductService from "../../services/products/deleteProduct.service"
 
 const deleteProductController = async (req, res) => {
     const data = await deleteProductService(req.params.id)

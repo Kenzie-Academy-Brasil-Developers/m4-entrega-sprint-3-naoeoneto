@@ -1,4 +1,4 @@
-import updateCategoryService from "../services/updateCategory.service"
+import updateCategoryService from "../../services/categories/updateCategory.service"
 
 const updateCategoryController = async (req, res) => {
     const data = await updateCategoryService(req.body, req.params.id)

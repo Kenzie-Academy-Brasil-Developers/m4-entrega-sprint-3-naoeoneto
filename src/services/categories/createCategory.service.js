@@ -1,6 +1,6 @@
-import { database } from "../database"
-import { AppError } from "../errors"
-import { categoryReturnedShape } from "../serializers/createCategory.schema"
+import { database } from "../../database"
+import { AppError } from "../../errors"
+import { categoryReturnedShape } from "../../serializers/categories/createCategory.schema"
 
 const createCategoryService = async (payload) => {
     const category = await database.query(

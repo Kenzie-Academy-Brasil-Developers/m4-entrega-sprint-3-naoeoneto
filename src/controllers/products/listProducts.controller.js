@@ -1,4 +1,4 @@
-import listProductsService from "../services/listProducts.service";
+import listProductsService from "../../services/products/listProducts.service";
 
 const listProductsController = async (req, res) => {
     const data = await listProductsService()

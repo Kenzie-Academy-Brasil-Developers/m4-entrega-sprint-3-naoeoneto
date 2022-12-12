@@ -1,4 +1,4 @@
-import { database } from "../database"
+import { database } from "../../database"
 
 const getInfoCategoryService = async (id) => {
     const queryResponse = await database.query(

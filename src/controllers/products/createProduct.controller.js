@@ -1,4 +1,4 @@
-import createProductService from "../services/createProduct.service"
+import createProductService from "../../services/products/createProduct.service"
 
 const createProductController = async (req, res) => {
     const [status, data] = await createProductService(req.body)

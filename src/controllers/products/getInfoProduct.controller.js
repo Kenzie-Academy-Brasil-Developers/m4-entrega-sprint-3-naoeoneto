@@ -1,4 +1,4 @@
-import getInfoProductService from "../services/getInfoProduct.service"
+import getInfoProductService from "../../services/products/getInfoProduct.service"
 
 const getInfoProductController = async (req, res) => {
     const data = await getInfoProductService(req.params.id)

@@ -1,5 +1,5 @@
-import { database } from "../database"
-import { AppError } from "../errors"
+import { database } from "../../database"
+import { AppError } from "../../errors"
 
 const updateCategoryService = async (data, id) => {
     const newName = Object.values(data).toString()

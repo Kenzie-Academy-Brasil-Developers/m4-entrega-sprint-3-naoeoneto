@@ -1,4 +1,4 @@
-import getInfoCategoryService from "../services/getInfoCategory.service"
+import getInfoCategoryService from "../../services/categories/getInfoCategory.service"
 
 const getInfoCategoryController = async (req, res) => {
     const data = await getInfoCategoryService(req.params.id)

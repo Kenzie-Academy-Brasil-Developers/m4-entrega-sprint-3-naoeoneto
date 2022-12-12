@@ -1,4 +1,4 @@
-import { database } from '../database'
+import { database } from '../../database'
 
 const createProductService = async (payload) => {
     const queryResponse = await database.query(

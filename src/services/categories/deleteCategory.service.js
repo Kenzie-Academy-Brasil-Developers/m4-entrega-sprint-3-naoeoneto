@@ -1,4 +1,4 @@
-import { database } from "../database"
+import { database } from "../../database"
 
 const deleteCategoryService = async (id) => {
     const queryResponse = await database.query(

@@ -1,3 +1,4 @@
-import userRouter from "./user.router";
+import categoryRouter from "./categories.router";
+import productRouter from "./products.router";
 
-export { userRouter }
+export { categoryRouter, productRouter }
